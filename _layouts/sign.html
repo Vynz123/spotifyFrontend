@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="path/to/your/css/style.css">
+</head>
+<body>
+    <div class="signup-container">
+        <h2>Sign Up</h2>
+        <form id="signupForm">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="uid">User ID:</label>
+            <input type="text" id="uid" name="uid" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+
+            <button type="submit">Sign Up</button>
+        </form>
+        <p>Already have an account? <a href="login.html">Log In</a></p>
+    </div>
+
+    <script>
+        document.getElementById("signupForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            // You can add your sign-up logic here
+            // For a basic example, you might want to validate inputs and send them to your server
+
+            // Example: Fetch API for sending data to the server
+            // Replace 'your-api-endpoint' with the actual endpoint
+            fetch('http://127.0.0.1:8086/api/users/create', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    name: document.getElementById("name").value,
+                    uid: document.getElementById("uid").value,
+                    email: document.getElementById("email").value,
+                    password: document.getElementById("password").value,
+                }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Success:', data);
+                // You can redirect the user to the login page or any other page after successful sign-up
+                window.location.href = 'login.html';
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+        });
+    </script>
+</body>
+</html>
