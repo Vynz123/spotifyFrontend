@@ -339,7 +339,7 @@ button:hover {
       <div class="navigation">
         <ul>
           <li>
-            <a href="#">
+            <a href="home.html">
               <span class="fa fa-home"></span>
               <span>Home</span>
             </a>
@@ -422,70 +422,63 @@ button:hover {
             <h1>Add a New Song</h1>
             <form id="song-form">
                 <label for="name">Name:</label>
-                <input type="text" id="name" name="name" required>
-    
+                <input type="text" id="name" name="_name" required>
+
                 <label for="description">Description:</label>
-                <textarea id="description" name="description" required></textarea>
-    
+                <textarea id="description" name="_description" required></textarea>
+
                 <label for="url">Song URL:</label>
-                <input type="text" id="url" name="url" required>
-    
+                <input type="text" id="url" name="_url" required>
+
                 <label for="uri">Image URI:</label>
-                <input type="text" id="uri" name="uri" required>
-    
+                <input type="text" id="uri" name="_uri" required>
+
                 <label for="tokens">Rating: 1-10</label>
-                <input type="number" id="tokens" name="tokens" required>
-    
-                <button type="submit">Submit</button>
+                <input type="number" id="tokens" name="_tokens" required>
+
+                <button type="button" onclick="createSong()">Create Song</button>
             </form>
             <div id="message"></div>
         </div>
+    </div>
+    </div>
 
         <script>
-          document.getElementById('song-form').addEventListener('submit', async (event) => {
-        event.preventDefault();
+        async function createSong() {
+            const name = document.getElementById('name').value;
+            const description = document.getElementById('description').value;
+            const uri = document.getElementById('uri').value;
+            const tokens = document.getElementById('tokens').value;
+            const url = document.getElementById('url').value;
 
-        const name = document.getElementById('name').value;
-        const description = document.getElementById('description').value;
-        const url = document.getElementById('url').value;
-        const uri = document.getElementById('uri').value;
-        const tokens = document.getElementById('tokens').value;
+            try {
+                const response = await fetch('http://127.0.0.1:8086/api/song/create', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Access-Control-Allow-Origin': 'http://your-frontend-url'  // Update with your frontend URL
+                    },
+                    body: JSON.stringify({
+                        _name: name,
+                        _description: description,
+                        _uri: uri,
+                        _tokens: tokens,
+                        _url: url
+                    })
+                });
 
-        try {
-            const response = await fetch('http://127.0.0.1:8086/api/song', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    _name: name,
-                    _description: description,
-                    _url: url,
-                    _uri: uri,
-                    _tokens: tokens
-                })
-            });
+                if (!response.ok) {
+                    throw new Error('Failed to create song');
+                }
 
-            if (!response.ok) {
-                const error = new Error('Failed to create song');
-                error.response = response;
-                throw error;
+                const data = await response.json();
+                console.log('Song created:', data);
+
+                // Optionally, reset the form or navigate to a different page
+            } catch (error) {
+                console.error('Error:', error);
             }
-
-            const contentType = response.headers.get('Content-Type');
-            if (!contentType || !contentType.startsWith('application/json')) {
-                throw new Error('Unexpected response type');
-            }
-
-            const data = await response.json();
-            console.log('Song created:', data);
-
-            // Reset the form
-            document.getElementById('song-form').reset();
-        } catch (error) {
-            console.error('Error:', error);
         }
-    });
         </script>
         
       
