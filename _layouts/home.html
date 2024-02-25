@@ -357,9 +357,9 @@
             </li>
             <li class="divider">|</li>
           </ul>
-          <button type="button">
+          <button type="button" id="loginButton">
             <a href="/_layouts/login.html">Log In</a>
-          </button>
+        </button>
         </div>
       </div>
 
@@ -371,6 +371,7 @@
 
 
         <script>
+
           function createItemBlock(data) {
             const item = document.createElement("div");
             item.classList.add("item");
@@ -449,11 +450,21 @@
               redirectToSongPage(songName, songUrl, item.dataset);
             }
           }
-        
+
+          let loggedIn = sessionStorage.getItem("loggedIn") || "0";
+
+          // Function to toggle the display of the login button
+          function toggleLoginButton() {
+              const loginButton = document.getElementById("loginButton");
+              loginButton.style.display = loggedIn === "1" ? "none" : "block";
+          }
+
+          // Call the function on page load to set the initial state
+                  
           // Load data when the page is loaded
           window.onload = function () {
+            toggleLoginButton();
             fetchData();
-            // Add click event listener to the list container
             document.getElementById("albumList").addEventListener("click", redirectToSongPageContainer);
           };
         </script>

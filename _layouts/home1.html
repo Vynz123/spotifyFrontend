@@ -272,41 +272,7 @@
             overflow-x: auto; /* Enable horizontal scrolling */
             white-space: nowrap; /* Prevent items from wrapping to the next line */
         }
-  
 
-
-  .bottom-bar {
-    background-color: #1a1a1a; /* Slightly lighter shade */
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    display: flex;
-    justify-content: space-between;
-    padding: 10px 20px;
-  }
-
-  .bottom-bar-item {
-    color: #ffffff;
-    font-size: 20px;
-    cursor: pointer;
-  }
-
-  .bottom-bar-item:hover {
-    color: #1db954; /* Change to your desired hover color */
-  }
-
-  /* Add this new CSS rule */
-  .bottom-bar #playButton {
-    background-color: #1db954;
-    font-size: 24px;
-    padding: 8px 16px;
-    border-radius: 50%;
-  }
-
-  .bottom-bar #playButton i {
-    color: #ffffff;
-  }
   </style>
 <body>
     <div class="sidebar">
@@ -319,7 +285,7 @@
       <div class="navigation">
         <ul>
           <li>
-            <a href="/_layouts/home.html">
+            <a href="#">
               <span class="fa fa-home"></span>
               <span>Home</span>
             </a>
@@ -359,6 +325,16 @@
         </ul>
       </div>
 
+      <div class="policies">
+        <ul>
+          <li>
+            <a href="#">Cookies</a>
+          </li>
+          <li>
+            <a href="#">Privacy</a>
+          </li>
+        </ul> 
+      </div>
     </div>
 
     <div class="main-container">
@@ -380,9 +356,6 @@
               <a href="#">Download</a>
             </li>
             <li class="divider">|</li>
-            <li>
-              <a href="#">Sign Up</a>
-            </li>
           </ul>
         </div>
       </div>
@@ -392,158 +365,97 @@
         <div class="list" id="albumList" onclick=>
 
         </div>
-        <div class="bottom-bar">
-          <div class="bottom-bar-item">
-            <img src="" id="currentSongImage"/>
-            <span style="margin-left: 10px;" id="currentSongName">
-              Playing:   
-            </span> 
-          </div>
-          <div class="bottom-bar-item">
-            <audio id="audioPlayer" preload="auto"></audio>
-            <button id="playButton">
-              <i class="fas fa-play"></i>
-            </button>
-          </div>
-          <div class="bottom-bar-item">
-            <i class="fas fa-volume-up"></i>
-            <!-- Replace the above icon class with the appropriate one for the volume icon -->
-          </div>
-        </div>
 
 
         <script>
-              function logSongUrl(data) {
-    console.log('Clicked Song URL:', data.url); // Assuming your data structure has a 'url' field
-  }
 
-const audioPlayer = document.getElementById('audioPlayer');
-const playButton = document.getElementById('playButton');
-let isPlaying = false;
-
-playButton.addEventListener('click', () => {
-  const audioUrl = sessionStorage.getItem('currentSongUrl');
-
-  if (audioUrl) {
-    audioPlayer.src = audioUrl;
-    audioPlayer.load();
-
-    if (!isPlaying) {
-      audioPlayer.play()
-        .then(() => {
-          isPlaying = true;
-          playButton.innerHTML = '<i class="fas fa-pause"></i>';
-
-          audioPlayer.addEventListener('pause', () => {
-            isPlaying = false;
-            playButton.innerHTML = '<i class="fas fa-play"></i>';
-          });
-        })
-        .catch((error) => {
-          console.error('Error playing audio:', error);
-        });
-    } else {
-      audioPlayer.pause();
-      isPlaying = false;
-      playButton.innerHTML = '<i class="fas fa-play"></i>';
-    }
-  } else {
-    console.warn('No audio URL found in local storage');
-  }
-});
-  function createItemBlock(data) {
-    const item = document.createElement("div");
-    item.classList.add("item");
-
-    // Assuming your data structure has changed
-    const img = document.createElement("img");
-    img.src = data._uri; // Update this to match your actual URI field
-    item.appendChild(img);
-
-    const play = document.createElement("div");
-    play.classList.add("play");
-    const playIcon = document.createElement("span");
-    playIcon.classList.add("fa", "fa-play");
-    playIcon.addEventListener("click", () => {
-      redirectToSongPage(data._name, data.url, data);
-      logSongUrl(data); // Log the song URL when play button is clicked
-    });
-    play.appendChild(playIcon);
-    item.appendChild(play);
-
-    const h4 = document.createElement("h4");
-    h4.textContent = data._name; // Update this to match your actual name field
-    item.appendChild(h4);
-
-    const p = document.createElement("p");
-    p.textContent = data._description; // Update this to match your actual tokens field
-    item.appendChild(p);
-
-    return item;
-  }
-
-    function updateCurrentSongInfo(data) {
-      const currentSongName = document.getElementById("currentSongName");
-      const currentSongImage = document.getElementById("currentSongImage");
-
-      // Assuming your data structure has an image URI field
-      const img = document.createElement("img");
-      img.src = data._imageUri; // Update this to match your actual image URI field
-      img.alt = "Current Song Image";
-      img.width = 30;
-      img.height = 30;
-      img.style.borderRadius = "50%";
-
-      // Update the span with the current song name
-      currentSongName.textContent = data._name; // Update this to match your actual name field
-
-      // Clear any existing content in the currentSongImage div
-      currentSongImage.innerHTML = "";
-
-      // Append the image to the currentSongImage div
-      currentSongImage.appendChild(img);
-    }
-
-    // Fetch data from Flask backend
-    async function fetchData(songName) {
-      try {
-        const response = await fetch('http://127.0.0.1:8086/api/song/all');
-        const songsData = await response.json();
-
-        const container = document.getElementById("albumList");
-        const currentSongImage = document.getElementById("currentSongImage");
-
-        // Filter songs based on the specified song name
-        const filteredSongs = songsData.filter((song) => song._name === songName);
-
-        // Map through the filtered list and create song cards
-        filteredSongs.forEach((song) => {
-          const itemBlock = createItemBlock(song);
-          container.appendChild(itemBlock);
-        });
-
-        if (filteredSongs.length > 0) {
-          // Update the current song info based on the first filtered song
-          updateCurrentSongInfo(filteredSongs[0]);
-        }
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    }
-
-    // Load data and update current song info when the page is loaded
-    window.onload = function () {
-      // Retrieve the stored song name and URL from sessionStorage
-      const currentSongName = sessionStorage.getItem('currentSongName');
-      const currentSongUrl = sessionStorage.getItem('currentSongUrl');
-
-      // Call fetchData with the stored song name
-      fetchData(currentSongName);
-      playAudio(currentSongUrl)
-      // Log the stored song URL to the console
-  };
-
-      </script>
+          function createItemBlock(data) {
+            const item = document.createElement("div");
+            item.classList.add("item");
         
+            // Assuming your data structure has changed
+            const img = document.createElement("img");
+            img.src = data._uri; // Update this to match your actual URI field
+            item.appendChild(img);
         
+            const play = document.createElement("div");
+            play.classList.add("play");
+            const playIcon = document.createElement("span");
+            playIcon.classList.add("fa", "fa-play");
+            playIcon.addEventListener("click", () => redirectToSongPage(data._name, data.url, data)); // Pass the actual song name, URL, and data here
+            play.appendChild(playIcon);
+            item.appendChild(play);
+        
+            // Set the song name in the dataset
+            item.dataset.songName = data._name;
+            // Set the song URL in the dataset
+            item.dataset.songUrl = data.url;
+        
+            const h4 = document.createElement("h4");
+            h4.textContent = data._name; // Update this to match your actual name field
+            item.appendChild(h4);
+        
+            const p = document.createElement("p");
+            p.textContent = data._description; // Update this to match your actual tokens field
+            item.appendChild(p);
+        
+            return item;
+          }
+        
+          // Fetch data from Flask backend
+          async function fetchData() {
+            try {
+              const response = await fetch('http://127.0.0.1:8086/api/song/all');
+              const songsData = await response.json();
+        
+              const container = document.getElementById("albumList");
+        
+              // Map through the list and create song cards
+              songsData.forEach((song) => {
+                const itemBlock = createItemBlock(song);
+                container.appendChild(itemBlock);
+              });
+            } catch (error) {
+              console.error('Error fetching data:', error);
+            }
+          }
+        
+          function redirectToSongPage(songName, songUrl, data) {
+            // Store the song name and URL in sessionStorage
+            sessionStorage.setItem('currentSongName', songName);
+            sessionStorage.setItem('currentSongUrl', songUrl);
+        
+            console.log(songUrl)
+            // Log the data to the console
+            // Redirect to the song.html page
+            window.location.href = 'song.html';
+          }
+        
+          // Function to handle the click on the entire list container
+          function redirectToSongPageContainer(event) {
+            // Get the target element that was clicked
+            const clickedElement = event.target;
+        
+            // Check if the clicked element is an item inside the list
+            if (clickedElement.classList.contains("play")) {
+              // If yes, get the song name and URL from the closest item
+              const item = clickedElement.closest(".item");
+              const songName = item.dataset.songName; // Retrieve the song name from the dataset
+              const songUrl = item.dataset.songUrl; // Retrieve the song URL from the dataset
+        
+              // Call the redirectToSongPage function
+              redirectToSongPage(songName, songUrl, item.dataset);
+            }
+          }
+
+          // Call the function on page load to set the initial state
+                  
+          // Load data when the page is loaded
+          window.onload = function () {
+            fetchData();
+            document.getElementById("albumList").addEventListener("click", redirectToSongPageContainer);
+          };
+        </script>
+        
+      
   </body>

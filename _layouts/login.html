@@ -57,24 +57,24 @@
 <body>
     <div class="login-container">
         <!-- Create a user form -->
-        <form action="javascript:login_user()">
+        <form onsubmit="login_user(event)">
             <label for="uid"><b>Username</b></label>
             <input type="text" id="uid" placeholder="Enter Username" name="uid" required>
             <label for="password"><b>Password</b></label>
             <input type="password" id="password" placeholder="Enter Password" name="password" required>
-            <button class='button'>Log in</button>
+            <button type="submit" class='button'>Log in</button>
             <div>
                 <span class="psw">Need an account? <a href="/_layouts/sign.html">Sign Up</a></span>
             </div>
         </form>
         <script type="module">
-            import { uri, options } from '{{site.baseurl}}/assets/js/api/config.js';
-
-            function login_user() {
+            function login_user(event) {
+                event.preventDefault(); // Prevent the default form submission behavior
                 var myHeaders = new Headers();
                 myHeaders.append("Content-Type", "application/json");
                 
-                const url = uri + '/api/users/authenticate';
+                // Update the API endpoint to use port 8000
+                const url = 'http://127.0.0.1:8000/api/users/authenticate';
                 
                 const body = {
                     uid: document.getElementById("uid").value,
@@ -95,11 +95,14 @@
                         console.log(errorMsg);
                         return;
                     }
-                    window.location.href = "data/database";
+                    window.location.href = "/_layouts/home1.html";
                 })
                 .catch(err => {
                     console.error(err);
                 });
+
+
+                sessionStorage.setItem("log", true);
             }
             
             window.login_user = login_user;
