@@ -300,13 +300,34 @@
   .bottom-bar #playButton {
     background-color: #1db954;
     font-size: 24px;
-    padding: 8px 16px;
+    padding: 12px 18px;
     border-radius: 50%;
-  }
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px; /* Adjust width for Spotify-like appearance */
+    height: 60px; /* Adjust height for Spotify-like appearance */
+}
 
-  .bottom-bar #playButton i {
+.bottom-bar #playButton:hover {
+    background-color: #15a441;
+}
+
+.bottom-bar #playButton i {
     color: #ffffff;
-  }
+}
+
+.bottom-bar #playButton i::before {
+    content: "\25B6"; /* Unicode character for the right-pointing triangle */
+    font-family: "Arial", sans-serif;
+    font-weight: bold;
+    font-size: 24px;
+}
+
   </style>
 <body>
     <div class="sidebar">
