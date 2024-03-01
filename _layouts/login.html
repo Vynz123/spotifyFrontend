@@ -359,7 +359,7 @@
           <label for="password"><b>Password</b></label>
           <input type="password" id="password" placeholder="Enter Password" name="password" required>
           <button type="submit" class='button'>
-            <a href="/_layouts/home1.html">Log in</a>
+            <a>log in</a>
         </button>
           <div>
               <span class="psw">Need an account? <a href="/_layouts/sign.html">Sign Up</a></span>
@@ -368,12 +368,14 @@
 
       <script type="module">
         function login_user(event) {
+
+          console.log("asijdaijsd 2")
             event.preventDefault(); // Prevent the default form submission behavior
             var myHeaders = new Headers();
             myHeaders.append("Content-Type", "application/json");
             
             // Update the API endpoint to use port 8000
-            const url = 'http://127.0.0.1:8000/api/users/authenticate';
+            const url = 'http://127.0.0.1:8086/api/users/authenticate';
             
             const body = {
                 uid: document.getElementById("uid").value,
