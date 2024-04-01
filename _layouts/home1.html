@@ -1,280 +1,330 @@
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="CSS/home.css">
-    <script src="https://kit.fontawesome.com/23cecef777.js" crossorigin="anonymous"></script>
-    <title>Home</title>
-  </head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="CSS/home.css">
+  <script src="https://kit.fontawesome.com/23cecef777.js" crossorigin="anonymous"></script>
+  <title>Home</title>
   <style>
-    * {
-    padding: 0;
-    margin: 0;
-  }
-  body {
-    background-color: #121212;
-    font-family: 'Montserrat', sans-serif;
-  }
-  
-  .sidebar {
-    position: fixed;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 196px;
-    background-color: #000000;
-    padding: 24px;
-  }
-  .sidebar .logo img {
-    width: 130px;
-  }
-  .sidebar .navigation ul {
-    list-style: none;
-    margin-top: 20px;
-  }
-  .sidebar .navigation ul li {
-    padding: 10px 0px;
-  }
-  .sidebar .navigation ul li a {
-    color: #b3b3b3;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 13px;
-  }
-  .sidebar .navigation ul li a:hover,
-  .sidebar .navigation ul li a:active,
-  .sidebar .navigation ul li a:focus {
-    color: #ffffff;
-  }
-  .sidebar .navigation ul li a:hover .fa,
-  .sidebar .navigation ul li a:active .fa,
-  .sidebar .navigation ul li a:focus .fa {
-    color: #b3b3b3;
-  }
-  .sidebar .navigation ul li .fa {
-    font-size: 20px;
-    margin-right: 10px;
-  }
-  .sidebar .navigation ul li a:hover .fa:hover,
-  .sidebar .navigation ul li a:hover .fa:active,
-  .sidebar .navigation ul li a:hover .fa:focus {
-    color: #ffffff;
-  }
-  .sidebar .policies {
-    position: absolute;
-    bottom: 100px;
-  }
-  .sidebar .policies ul {
-    list-style: none;
-  }
-  .sidebar .policies ul li {
-    padding-bottom: 5px;
-  }
-  .sidebar .policies ul li a {
-    color: #b3b3b3;
-    font-weight: 500;
-    text-decoration: none;
-    font-size: 10px;
-  }
-  .sidebar .policies ul li a:hover,
-  .sidebar .policies ul li a:active,
-  .sidebar .policies ul li a:focus {
-    text-decoration: underline;
-  }
-  
-  .main-container {
-    margin-left: 245px;
-    margin-bottom: 100px;
-  }
-  
-  .topbar {
-    display: flex;
-    justify-content: space-between;
-    background-color: #101010;
-    padding: 14px 30px;
-  }
-  .topbar .prev-next-buttons button {
-    color: #7a7a7a;
-    cursor: not-allowed;
-    width: 34px;
-    height: 34px;
-    border-radius: 100%;
-    font-size: 18px;
-    border: 0px;
-    background-color: #090909;
-    margin-right: 10px;
-  }
-  .topbar .navbar {
-    display: flex;
-    align-items: center;
-  }
-  .topbar .navbar ul {
-    list-style: none;
-  }
-  .topbar .navbar ul li {
-    display: inline-block;
-    margin: 0px 8px;
-    width: 70px;
-  }
-  .topbar .navbar ul li a {
-    color: #b3b3b3;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 14px;
-    letter-spacing: 1px;
-  }
-  .topbar .navbar ul li a:hover,
-  .topbar .navbar ul li a:active,
-  .topbar .navbar ul li a:focus {
-    color: #ffffff;
-    font-size: 15px;
-  }
-  .topbar .navbar ul li.divider {
-    color: #ffffff;
-    font-size: 26px;
-    margin: 0px 20px;
-    width: auto;
-  }
-  .topbar .navbar button {
-    background-color: #ffffff;
-    color: #000000;
-    font-size: 16px;
-    font-weight: bold;
-    padding: 14px 30px;
-    border: 0px;
-    border-radius: 40px;
-    cursor: pointer;
-    margin-left: 20px;
-  }
-  .topbar .navbar button:hover,
-  .topbar .navbar button:active,
-  .topbar .navbar button:focus {
-    background-color: #f2f2f2;
-  }
-  .spotify-playlists {
-    padding: 20px 40px;
-  }
-  .spotify-playlists h2 {
-    color: #ffffff;
-    font-size: 22px;
-    margin-bottom: 20px;
-  }
-  .spotify-playlists .list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: flex-start;
-    padding-left: 5px; /* Add padding to the entire list */
-}
+      *{
+        padding: 0;
+        margin: 0;
+      }
+      
+      .global-styles {
+          padding: 0;
+          margin: 0;
+          background-color: #121212;
+          font-family: 'Montserrat', sans-serif;
+      }
 
-.spotify-playlists .list .item {
-    min-width: 140px;
-    width: 160px;
-    padding: 15px;
-    background-color: #181818;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: all ease 0.4s;
-}
+      /* Adjust specific styles targeting the body */
+      .global-styles .sidebar {
+          position: fixed;
+          left: 0;
+          top: 0;
+          bottom: 0;
+          width: 196px;
+          background-color: #000000;
+          padding: 24px;
+      }
 
-/* Reset padding for items in the second and subsequent rows */
-.spotify-playlists .list br + .item {
-    padding-left: 0;
-}
+      .global-styles .main-container {
+          margin-left: 245px;
+          margin-bottom: 100px;
+      }
 
+      .sidebar {
+          position: fixed;
+          left: 0;
+          top: 0;
+          bottom: 0;
+          width: 196px;
+          background-color: #000000;
+          padding: 24px;
+      }
 
+      .sidebar .logo img {
+          width: 130px;
+      }
 
-.spotify-playlists .list .item:not(:first-child) {
-    margin-left: 20px; /* Add left margin to all items except the first item */
-}
+      .sidebar .navigation ul {
+          list-style: none;
+          margin-top: 20px;
+      }
 
+      .sidebar .navigation ul li {
+          padding: 10px 0px;
+      }
 
-  .spotify-playlists .list .item:hover {
-    background-color: #252525;
-  }
-  .spotify-playlists .list .item img {
-    width: 100%;
-    border-radius: 6px;
-    margin-bottom: 10px;
-  }
-  .spotify-playlists .list .item .play {
-    position: relative;
-  }
-  .spotify-playlists .list .item .play .fa {
-    position: absolute;
-    right: 10px;
-    top: -60px;
-    padding: 18px;
-    background-color: #1db954;
-    border-radius: 100%;
-    opacity: 0;
-    transition: all ease 0.4s;
-  }
-  .spotify-playlists .list .item:hover .play .fa {
-    opacity: 1;
-    transform: translateY(-20px);
-  }
-  .spotify-playlists .list .item h4 {
-    color: #ffffff;
-    font-size: 14px;
-    margin-bottom: 10px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  .spotify-playlists .list .item p {
-    color: #989898;
-    font-size: 12px;
-    line-height: 20px;
-    font-weight: 600;
-  }
-  .spotify-playlists hr {
-    margin: 70px 0px 0px;
-    border-color: #636363;
-  }
-  
-  .preview {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: linear-gradient(to right, #ae2896, #509bf5);
-    padding: 15px 40px;
-    display: flex;
-    justify-content: space-between;
-  }
-  .preview h6 {
-    color: #ffffff;
-    text-transform: uppercase;
-    font-weight: 400;
-    font-size: 12px;
-    margin-bottom: 10px;
-  }
-  .preview p {
-    color: #ffffff;
-    font-size: 14px;
-    font-weight: 500;
-  }
-  .preview button {
-    background-color: #ffffff;
-    color: #000000;
-    font-size: 16px;
-    font-weight: bold;
-    padding: 14px 30px;
-    border: 0px;
-    border-radius: 40px;
-    cursor: pointer;
-  }
-  .spotify-playlists .list {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            gap: 20px;
-            overflow-x: auto; /* Enable horizontal scrolling */
-            white-space: nowrap; /* Prevent items from wrapping to the next line */
-        }
+      .sidebar .navigation ul li a {
+          color: #b3b3b3;
+          text-decoration: none;
+          font-weight: bold;
+          font-size: 13px;
+      }
 
+      .sidebar .navigation ul li a:hover,
+      .sidebar .navigation ul li a:active,
+      .sidebar .navigation ul li a:focus {
+          color: #ffffff;
+      }
+
+      .sidebar .navigation ul li a:hover .fa,
+      .sidebar .navigation ul li a:active .fa,
+      .sidebar .navigation ul li a:focus .fa {
+          color: #b3b3b3;
+      }
+
+      .sidebar .navigation ul li .fa {
+          font-size: 20px;
+          margin-right: 10px;
+      }
+
+      .sidebar .navigation ul li a:hover .fa:hover,
+      .sidebar .navigation ul li a:hover .fa:active,
+      .sidebar .navigation ul li a:hover .fa:focus {
+          color: #ffffff;
+      }
+
+      .sidebar .policies {
+          position: absolute;
+          bottom: 100px;
+      }
+
+      .sidebar .policies ul {
+          list-style: none;
+      }
+
+      .sidebar .policies ul li {
+          padding-bottom: 5px;
+      }
+
+      .sidebar .policies ul li a {
+          color: #b3b3b3;
+          font-weight: 500;
+          text-decoration: none;
+          font-size: 10px;
+      }
+
+      .sidebar .policies ul li a:hover,
+      .sidebar .policies ul li a:active,
+      .sidebar .policies ul li a:focus {
+          text-decoration: underline;
+      }
+
+      .main-container {
+          margin-left: 245px;
+          margin-bottom: 100px;
+      }
+
+      .topbar {
+          display: flex;
+          justify-content: space-between;
+          background-color: #101010;
+          padding: 14px 30px;
+      }
+
+      .topbar .prev-next-buttons button {
+          color: #7a7a7a;
+          cursor: not-allowed;
+          width: 34px;
+          height: 34px;
+          border-radius: 100%;
+          font-size: 18px;
+          border: 0px;
+          background-color: #090909;
+          margin-right: 10px;
+      }
+
+      .topbar .navbar {
+          display: flex;
+          align-items: center;
+      }
+
+      .topbar .navbar ul {
+          list-style: none;
+      }
+
+      .topbar .navbar ul li {
+          display: inline-block;
+          margin: 0px 8px;
+          width: 70px;
+      }
+
+      .topbar .navbar ul li a {
+          color: #b3b3b3;
+          text-decoration: none;
+          font-weight: bold;
+          font-size: 14px;
+          letter-spacing: 1px;
+      }
+
+      .topbar .navbar ul li a:hover,
+      .topbar .navbar ul li a:active,
+      .topbar .navbar ul li a:focus {
+          color: #ffffff;
+          font-size: 15px;
+      }
+
+      .topbar .navbar ul li.divider {
+          color: #ffffff;
+          font-size: 26px;
+          margin: 0px 20px;
+          width: auto;
+      }
+
+      .topbar .navbar button {
+          background-color: #ffffff;
+          color: #000000;
+          font-size: 16px;
+          font-weight: bold;
+          padding: 14px 30px;
+          border: 0px;
+          border-radius: 40px;
+          cursor: pointer;
+          margin-left: 20px;
+      }
+
+      .topbar .navbar button:hover,
+      .topbar .navbar button:active,
+      .topbar .navbar button:focus {
+          background-color: #f2f2f2;
+      }
+
+      .spotify-playlists {
+          padding: 20px 40px;
+      }
+
+      .spotify-playlists h2 {
+          color: #ffffff;
+          font-size: 22px;
+          margin-bottom: 20px;
+      }
+
+      .spotify-playlists .list {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 20px;
+          justify-content: flex-start;
+          padding-left: 5px; /* Add padding to the entire list */
+      }
+
+      .spotify-playlists .list .item {
+          min-width: 140px;
+          width: 160px;
+          padding: 15px;
+          background-color: #181818;
+          border-radius: 6px;
+          cursor: pointer;
+          transition: all ease 0.4s;
+      }
+
+      /* Reset padding for items in the second and subsequent rows */
+      .spotify-playlists .list br + .item {
+          padding-left: 0;
+      }
+
+      .spotify-playlists .list .item:not(:first-child) {
+          margin-left: 20px; /* Add left margin to all items except the first item */
+      }
+
+      .spotify-playlists .list .item:hover {
+          background-color: #252525;
+      }
+
+      .spotify-playlists .list .item img {
+          width: 100%;
+          border-radius: 6px;
+          margin-bottom: 10px;
+      }
+
+      .spotify-playlists .list .item .play {
+          position: relative;
+      }
+
+      .spotify-playlists .list .item .play .fa {
+          position: absolute;
+          right: 10px;
+          top: -60px;
+          padding: 18px;
+          background-color: #1db954;
+          border-radius: 100%;
+          opacity: 0;
+          transition: all ease 0.4s;
+      }
+
+      .spotify-playlists .list .item:hover .play .fa {
+          opacity: 1;
+          transform: translateY(-20px);
+      }
+
+      .spotify-playlists .list .item h4 {
+          color: #ffffff;
+          font-size: 14px;
+          margin-bottom: 10px;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+      }
+
+      .spotify-playlists .list .item p {
+          color: #989898;
+          font-size: 12px;
+          line-height: 20px;
+          font-weight: 600;
+      }
+
+      .spotify-playlists hr {
+          margin: 70px 0px 0px;
+          border-color: #636363;
+      }
+
+      .preview {
+          position: fixed;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          background: linear-gradient(to right, #32a852, #00FF00); /* Green gradient */
+          padding: 15px 40px;
+          display: flex;
+          justify-content: space-between;
+      }
+
+      .preview h6 {
+          color: #ffffff;
+          text-transform: uppercase;
+          font-weight: 400;
+          font-size: 12px;
+          margin-bottom: 10px;
+      }
+
+      .preview p {
+          color: #ffffff;
+          font-size: 14px;
+          font-weight: 500;
+      }
+
+      .preview button {
+          background-color: #ffffff;
+          color: #000000;
+          font-size: 16px;
+          font-weight: bold;
+          padding: 14px 30px;
+          border: 0px;
+          border-radius: 40px;
+          cursor: pointer;
+      }
+      
+      .preview button:hover,
+      .preview button:active,
+      .preview button:focus {
+          background-color: #f2f2f2;
+      }
   </style>
-<body>
+</head>
+<body class="main-spotify">
+  <div class="global-styles">
     <div class="sidebar">
       <div class="logo">
         <a href="#">
@@ -338,124 +388,138 @@
     </div>
 
     <div class="main-container">
-      <div class="topbar">
-        <div class="prev-next-buttons">
-          <button type="button" class="fa fas fa-chevron-left"></button>
-          <button type="button" class="fa fas fa-chevron-right"></button>
-        </div>
-
-        <div class="navbar">
-          <ul>
-            <li>
-              <a href="#">Premium</a>
-            </li>
-            <li>
-              <a href="#">Support</a>
-            </li>
-            <li>
-              <a href="#">Download</a>
-            </li>
-            <li class="divider">|</li>
-          </ul>
-        </div>
-      </div>
+      <!-- Other HTML content -->
 
       <div class="spotify-playlists">
-        <h2>Spotify Playlists</h2>
-        <div class="list" id="albumList" onclick=>
+          <h2>Spotify Playlists</h2>
+          <div class="list" id="albumList">
+              <!-- Songs will be dynamically added here -->
+          </div>
+      </div>
 
-        </div>
+      <<div class="preview">
+        <p id="nowPlaying" style="color: white; font-weight: bold; font-family: 'Montserrat', sans-serif;">No song playing</p>
+
+        <button id="playButton">
+            Play
+            <audio id="audioPlayer"></audio>
+        </button>
+    </div>
+  </div>
+    <script>
+      let currentSongUrl = null; // Track the current song URL
+      let audio = null; // Track the audio element
+
+      // Function to handle the click on the entire list container
+      // Function to handle the click on the entire list container
+function redirectToSongPageContainer(event) {
+    // Get the target element that was clicked
+    const clickedElement = event.target;
+
+    // Check if the clicked element is the play button
+    if (clickedElement.classList.contains("fa-play")) {
+        // Get the closest item container
+        const item = clickedElement.closest(".item");
+        // Get the song URL from the dataset
+        const songUrl = item.dataset.songUrl;
+
+        // You can store the song URL here or perform any other action
+
+        // Prevent the default action of playing the song
+        event.preventDefault();
+    }
+}
 
 
-        <script>
+      // Load data when the page is loaded
+      window.onload = function () {
+          fetchData();
+          document.getElementById("albumList").addEventListener("click", redirectToSongPageContainer);
+          const playButton = document.getElementById("playButton");
+          playButton.addEventListener("click", togglePlayPause);
+      };
 
-          function createItemBlock(data) {
-            const item = document.createElement("div");
-            item.classList.add("item");
-        
-            // Assuming your data structure has changed
-            const img = document.createElement("img");
-            img.src = data._uri; // Update this to match your actual URI field
-            item.appendChild(img);
-        
-            const play = document.createElement("div");
-            play.classList.add("play");
-            const playIcon = document.createElement("span");
-            playIcon.classList.add("fa", "fa-play");
-            playIcon.addEventListener("click", () => redirectToSongPage(data._name, data.url, data)); // Pass the actual song name, URL, and data here
-            play.appendChild(playIcon);
-            item.appendChild(play);
-        
-            // Set the song name in the dataset
-            item.dataset.songName = data._name;
-            // Set the song URL in the dataset
-            item.dataset.songUrl = data.url;
-        
-            const h4 = document.createElement("h4");
-            h4.textContent = data._name; // Update this to match your actual name field
-            item.appendChild(h4);
-        
-            const p = document.createElement("p");
-            p.textContent = data._description; // Update this to match your actual tokens field
-            item.appendChild(p);
-        
-            return item;
-          }
-        
-          // Fetch data from Flask backend
-          async function fetchData() {
-            try {
+      function createItemBlock(data) {
+          const item = document.createElement("div");
+          item.classList.add("item");
+      
+          // Assuming your data structure has changed
+          const img = document.createElement("img");
+          img.src = data._uri; // Update this to match your actual URI field
+          item.appendChild(img);
+      
+          const play = document.createElement("div");
+          play.classList.add("play");
+          const playIcon = document.createElement("span");
+          playIcon.classList.add("fa", "fa-play");
+          playIcon.addEventListener("click", () => {
+              // Store the song URL in sessionStorage
+              sessionStorage.setItem('currentSongUrl', data.url);
+              // Play the song
+              playSong(data.url);
+              // Update the now playing text
+              const nowPlaying = document.getElementById('nowPlaying');
+              nowPlaying.textContent = `Now Playing: ${data._name}`;
+          });
+          play.appendChild(playIcon);
+          item.appendChild(play);
+      
+          // Set the song name in the dataset
+          item.dataset.songName = data._name;
+          // Set the song URL in the dataset
+          item.dataset.songUrl = data.url;
+      
+          const h4 = document.createElement("h4");
+          h4.textContent = data._name; // Update this to match your actual name field
+          item.appendChild(h4);
+      
+          const p = document.createElement("p");
+          p.textContent = data._description; // Update this to match your actual tokens field
+          item.appendChild(p);
+      
+          return item;
+      }
+
+      // Fetch data from Flask backend
+      async function fetchData() {
+          try {
               const response = await fetch('http://127.0.0.1:8086/api/song/all');
               const songsData = await response.json();
-        
+      
               const container = document.getElementById("albumList");
-        
+      
               // Map through the list and create song cards
               songsData.forEach((song) => {
-                const itemBlock = createItemBlock(song);
-                container.appendChild(itemBlock);
+                  const itemBlock = createItemBlock(song);
+                  container.appendChild(itemBlock);
               });
-            } catch (error) {
+          } catch (error) {
               console.error('Error fetching data:', error);
-            }
           }
-        
-          function redirectToSongPage(songName, songUrl, data) {
-            // Store the song name and URL in sessionStorage
-            sessionStorage.setItem('currentSongName', songName);
-            sessionStorage.setItem('currentSongUrl', songUrl);
-        
-            console.log(songUrl)
-            // Log the data to the console
-            // Redirect to the song.html page
-            window.location.href = 'song.html';
-          }
-        
-          // Function to handle the click on the entire list container
-          function redirectToSongPageContainer(event) {
-            // Get the target element that was clicked
-            const clickedElement = event.target;
-        
-            // Check if the clicked element is an item inside the list
-            if (clickedElement.classList.contains("play")) {
-              // If yes, get the song name and URL from the closest item
-              const item = clickedElement.closest(".item");
-              const songName = item.dataset.songName; // Retrieve the song name from the dataset
-              const songUrl = item.dataset.songUrl; // Retrieve the song URL from the dataset
-        
-              // Call the redirectToSongPage function
-              redirectToSongPage(songName, songUrl, item.dataset);
-            }
+      }
+
+      function playSong(songUrl) {
+          // Pause the currently playing audio if any
+          if (audio) {
+              audio.pause();
           }
 
-          // Call the function on page load to set the initial state
-                  
-          // Load data when the page is loaded
-          window.onload = function () {
-            fetchData();
-            document.getElementById("albumList").addEventListener("click", redirectToSongPageContainer);
-          };
-        </script>
+          // Create a new audio element and play the song
+          audio = new Audio(songUrl);
+          audio.play();
+      }
+
+      function togglePlayPause() {
+          // If audio is paused, play it, and vice versa
+          if (audio.paused) {
+              audio.play();
+              this.textContent = 'Pause';
+          } else {
+              audio.pause();
+              this.textContent = 'Play';
+          }
+      }
+  </script>
         
       
   </body>
